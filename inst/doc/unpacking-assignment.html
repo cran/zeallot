@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="date" content="2017-01-27" />
+
+<title>Unpacking Assignment</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Unpacking Assignment</h1>
+<h4 class="date"><em>2017-01-27</em></h4>
+
+
+
+<div id="getting-started" class="section level2">
+<h2>Getting Started</h2>
+<p>The <em>zeallot</em> package defines an operator for <em>unpacking assignment</em>, sometimes called <em>parallel assignment</em> or <em>destructuring assignment</em> in other programming languages. The operator is written as <code>%&lt;-%</code> and used like this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{ lat :<span class="st"> </span>lng } %&lt;-%<span class="st"> </span><span class="kw">list</span>(<span class="fl">38.061944</span>, -<span class="fl">122.643889</span>)</code></pre></div>
+<p>The result is that the list is unpacked into its elements, and the elements are assigned to <code>lat</code> and <code>lng</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lat
+<span class="co">#&gt; [1] 38.06194</span>
+lng
+<span class="co">#&gt; [1] -122.6439</span></code></pre></div>
+<p>You can also unpack the elements of a vector. Omit the braces ({}) in that case.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lat :<span class="st"> </span>lng %&lt;-%<span class="st"> </span><span class="kw">c</span>(<span class="fl">38.061944</span>, -<span class="fl">122.643889</span>)
+lat
+<span class="co">#&gt; [1] 38.06194</span>
+lng
+<span class="co">#&gt; [1] -122.6439</span></code></pre></div>
+<p>You can unpack much longer structures, too, of course, such as the 6-part summary of a vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">min_wt :<span class="st"> </span>q1_wt :<span class="st"> </span>med_wt :<span class="st"> </span>mean_wt :<span class="st"> </span>q3_wt :<span class="st"> </span>max_wt %&lt;-%<span class="st"> </span><span class="kw">summary</span>(mtcars$wt)
+min_wt
+<span class="co">#&gt; [1] 1.513</span>
+q1_wt
+<span class="co">#&gt; [1] 2.581</span>
+med_wt
+<span class="co">#&gt; [1] 3.325</span>
+mean_wt
+<span class="co">#&gt; [1] 3.217</span>
+q3_wt
+<span class="co">#&gt; [1] 3.61</span>
+max_wt
+<span class="co">#&gt; [1] 5.424</span></code></pre></div>
+<p>If the left-hand side and right-hand sides do not match, an error is raised. This guards against missing or unexpected values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{ stg1 :<span class="st"> </span>stg2 :<span class="st"> </span>stg3 } %&lt;-%<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Moe&quot;</span>, <span class="st">&quot;Donald&quot;</span>)
+<span class="co">#&gt; Error: expecting 3 values, but found 2</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{ stg1 :<span class="st"> </span>stg2 :<span class="st"> </span>stg3 } %&lt;-%<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Moe&quot;</span>, <span class="st">&quot;Larry&quot;</span>, <span class="st">&quot;Curley&quot;</span>, <span class="st">&quot;Donald&quot;</span>)
+<span class="co">#&gt; Error: too many values to unpack</span></code></pre></div>
+<div id="unpacking-a-returned-value" class="section level3">
+<h3>Unpacking a returned value</h3>
+<p>A common use-case is when a function returns a list of values and you want to extract the individual values. In this example, the list of values returned by <code>coords_list()</code> is unpacked into the variables <code>lat</code> and <code>lng</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#</span>
+<span class="co"># A function which returns a list of 2 numeric values.</span>
+<span class="co"># </span>
+coords_list &lt;-<span class="st"> </span>function() {
+  <span class="kw">list</span>(<span class="fl">38.061944</span>, -<span class="fl">122.643889</span>)
+}
+
+{ lat :<span class="st"> </span>lng } %&lt;-%<span class="st"> </span><span class="kw">coords_list</span>()
+lat
+<span class="co">#&gt; [1] 38.06194</span>
+lng
+<span class="co">#&gt; [1] -122.6439</span></code></pre></div>
+<p>As in the earlier example, colon and braces on the left-hand side of the assignment tell the assignment operator to expect a list.</p>
+<p>In this example, we call a function that returns a vector. Now we omit the braces.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#</span>
+<span class="co"># Convert cartesian coordinates to polar</span>
+<span class="co">#</span>
+to_polar =<span class="st"> </span>function(x, y) {
+  <span class="kw">c</span>(<span class="kw">sqrt</span>(x^<span class="dv">2</span> +<span class="st"> </span>y^<span class="dv">2</span>), <span class="kw">atan</span>(y /<span class="st"> </span>x))
+}
+
+radius :<span class="st"> </span>angle %&lt;-%<span class="st"> </span><span class="kw">to_polar</span>(<span class="dv">12</span>, <span class="dv">5</span>)
+radius
+<span class="co">#&gt; [1] 13</span>
+angle
+<span class="co">#&gt; [1] 0.3947911</span></code></pre></div>
+</div>
+<div id="example-intercept-and-slope-of-regression" class="section level3">
+<h3>Example: Intercept and slope of regression</h3>
+<p>You can directly unpack the coefficients of a simple linear regression into the intercept and slope.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inter :<span class="st"> </span>slope %&lt;-%<span class="st"> </span><span class="kw">coef</span>(<span class="kw">lm</span>(mpg ~<span class="st"> </span>cyl, <span class="dt">data =</span> mtcars))
+inter
+<span class="co">#&gt; [1] 37.88458</span>
+slope
+<span class="co">#&gt; [1] -2.87579</span></code></pre></div>
+</div>
+<div id="example-unpacking-the-result-of-safely" class="section level3">
+<h3>Example: Unpacking the result of <code>safely</code></h3>
+<p>The <em>purrr</em> package includes the <code>safely</code> function. It wraps a given function to create a new, “safe” version of the original function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">safe_log &lt;-<span class="st"> </span>purrr::<span class="kw">safely</span>(log)</code></pre></div>
+<p>The safe version returns a list of two items. The first item is the result of calling the original function, assuming no error occurred; or <code>NULL</code> if an error did occur. The second item is the error, if an error occurred; or <code>NULL</code> if no error occurred. Whether or not the original function would have thrown an error, the safe version will never throw an error.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pair &lt;-<span class="st"> </span><span class="kw">safe_log</span>(<span class="dv">10</span>)
+pair$result
+<span class="co">#&gt; [1] 2.302585</span>
+pair$error
+<span class="co">#&gt; NULL</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pair &lt;-<span class="st"> </span><span class="kw">safe_log</span>(<span class="st">'donald'</span>)
+pair$result
+<span class="co">#&gt; NULL</span>
+pair$error
+<span class="co">#&gt; &lt;simpleError in .f(...): non-numeric argument to mathematical function&gt;</span></code></pre></div>
+<p>You can tighten and clarify calls to the safe function by using <code>%&lt;-%</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{ res :<span class="st"> </span>err } %&lt;-%<span class="st"> </span><span class="kw">safe_log</span>(<span class="dv">10</span>)
+res
+<span class="co">#&gt; [1] 2.302585</span>
+err
+<span class="co">#&gt; NULL</span></code></pre></div>
+</div>
+</div>
+<div id="unpacking-a-data-frame" class="section level2">
+<h2>Unpacking a data frame</h2>
+<p>A data frame is simply a list of columns, so the <em>zeallot</em> assignment does what you expect. It unpacks the data frame into individual columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{ mpg :<span class="st"> </span>cyl :<span class="st"> </span>disp :<span class="st"> </span>hp } %&lt;-%<span class="st"> </span>mtcars[, <span class="dv">1</span>:<span class="dv">4</span>]
+
+<span class="kw">head</span>(mpg)
+<span class="co">#&gt; [1] 21.0 21.0 22.8 21.4 18.7 18.1</span>
+
+<span class="kw">head</span>(cyl)
+<span class="co">#&gt; [1] 6 6 4 6 8 6</span>
+
+<span class="kw">head</span>(disp)
+<span class="co">#&gt; [1] 160 160 108 258 360 225</span>
+
+<span class="kw">head</span>(hp)
+<span class="co">#&gt; [1] 110 110  93 110 175 105</span></code></pre></div>
+<div id="example-list-of-data-frames" class="section level3">
+<h3>Example: List of data frames</h3>
+<p>Bear in mind that a list of data frames is still just a list. The assignment will extract the list elements (which are data frames) but not unpack the data frames themselves.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">quartet &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span>:<span class="dv">4</span>, function(i) anscombe[, <span class="kw">c</span>(i, i +<span class="st"> </span><span class="dv">4</span>)])
+
+{ an1 :<span class="st"> </span>an2 :<span class="st"> </span>an3 :<span class="st"> </span>an4 } %&lt;-%<span class="st"> </span><span class="kw">lapply</span>(quartet, head, <span class="dt">n =</span> <span class="dv">3</span>)
+
+an1
+<span class="co">#&gt;   x1   y1</span>
+<span class="co">#&gt; 1 10 8.04</span>
+<span class="co">#&gt; 2  8 6.95</span>
+<span class="co">#&gt; 3 13 7.58</span>
+
+an2
+<span class="co">#&gt;   x2   y2</span>
+<span class="co">#&gt; 1 10 9.14</span>
+<span class="co">#&gt; 2  8 8.14</span>
+<span class="co">#&gt; 3 13 8.74</span>
+
+an3
+<span class="co">#&gt;   x3    y3</span>
+<span class="co">#&gt; 1 10  7.46</span>
+<span class="co">#&gt; 2  8  6.77</span>
+<span class="co">#&gt; 3 13 12.74</span>
+
+an4
+<span class="co">#&gt;   x4   y4</span>
+<span class="co">#&gt; 1  8 6.58</span>
+<span class="co">#&gt; 2  8 5.76</span>
+<span class="co">#&gt; 3  8 7.71</span></code></pre></div>
+<p>The <code>%&lt;-%</code> operator assigned four data frames to four variables, leaving the data frames intact.</p>
+</div>
+</div>
+<div id="unpacking-nested-values" class="section level2">
+<h2>Unpacking nested values</h2>
+<p>In addition to unpacking flat lists, you can unpack lists of lists.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{a :<span class="st"> </span>{ b :<span class="st"> </span>c } :<span class="st"> </span>d } %&lt;-%<span class="st"> </span><span class="kw">list</span>(<span class="st">'begin'</span>, <span class="kw">list</span>(<span class="st">'middle1'</span>, <span class="st">'middle2'</span>), <span class="st">'end'</span>)
+a
+<span class="co">#&gt; [1] &quot;begin&quot;</span>
+b
+<span class="co">#&gt; [1] &quot;middle1&quot;</span>
+c
+<span class="co">#&gt; [1] &quot;middle2&quot;</span>
+d
+<span class="co">#&gt; [1] &quot;end&quot;</span></code></pre></div>
+<p>Not only does this simplify extracting individual elements, it also adds a level of checking. If the described list structure does not match the actual list structure, an error is raised.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{a :<span class="st"> </span>{ b :<span class="st"> </span>c :<span class="st"> </span>x} :<span class="st"> </span>d } %&lt;-%<span class="st"> </span><span class="kw">list</span>(<span class="st">'begin'</span>, <span class="kw">list</span>(<span class="st">'middle1'</span>, <span class="st">'middle2'</span>), <span class="st">'end'</span>)
+<span class="co">#&gt; Error: expecting 3 values, but found 2</span></code></pre></div>
+</div>
+<div id="splitting-a-value-into-its-parts" class="section level2">
+<h2>Splitting a value into its parts</h2>
+<p>The previous examples dealt with unpacking a list or vector into its elements. You can also split certain kinds of individual values into subvalues.</p>
+<div id="character-vectors" class="section level3">
+<h3>Character vectors</h3>
+<p>You can assign individual characters of a string to variables. Since character strings are vectors, do not forget to exclude braces from the assignment expression.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ch1 :<span class="st"> </span>ch2 :<span class="st"> </span>ch3 %&lt;-%<span class="st"> 'abc'</span>
+ch1
+<span class="co">#&gt; [1] &quot;a&quot;</span>
+ch2
+<span class="co">#&gt; [1] &quot;b&quot;</span>
+ch3
+<span class="co">#&gt; [1] &quot;c&quot;</span></code></pre></div>
+</div>
+<div id="dates" class="section level3">
+<h3>Dates</h3>
+<p>You can split a Date into its year, month, and day, and assign the parts to variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y :<span class="st"> </span>m :<span class="st"> </span>d %&lt;-%<span class="st"> </span><span class="kw">Sys.Date</span>()
+y
+<span class="co">#&gt; [1] 2017</span>
+m
+<span class="co">#&gt; [1] 1</span>
+d
+<span class="co">#&gt; [1] 27</span></code></pre></div>
+</div>
+<div id="class-objects" class="section level3">
+<h3>Class objects</h3>
+<p><em>zeallot</em> includes implementations of <code>destructure</code> for character strings, complex numbers, data frames, date objects, and linear model summaries. However, because <code>destructure</code> is a generic function, you can define new implementations for custom classes. When defining a new implementation keep in mind the implementation needs to return a list so that values are properly unpacked.</p>
+</div>
+</div>
+<div id="trailing-values-the-everything-else-clause" class="section level2">
+<h2>Trailing values: the “everything else” clause</h2>
+<p>In some cases, you want the first few elements of a list or vector but do not care about the trailing elements. The <code>summary</code> function of <code>lm</code>, for example, returns a list of 11 values, and you might want only the first few. Fortunately, there is a way to capture those first few and say “don’t worry about everything else”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg ~<span class="st"> </span>cyl, <span class="dt">data =</span> mtcars)
+
+{ fcall :<span class="st"> </span>fterms :<span class="st"> </span>resids :<span class="st"> </span>...rest } %&lt;-%<span class="st"> </span><span class="kw">summary</span>(f)
+
+fcall
+<span class="co">#&gt; lm(formula = mpg ~ cyl, data = mtcars)</span>
+
+fterms
+<span class="co">#&gt; mpg ~ cyl</span>
+<span class="co">#&gt; attr(,&quot;variables&quot;)</span>
+<span class="co">#&gt; list(mpg, cyl)</span>
+<span class="co">#&gt; attr(,&quot;factors&quot;)</span>
+<span class="co">#&gt;     cyl</span>
+<span class="co">#&gt; mpg   0</span>
+<span class="co">#&gt; cyl   1</span>
+<span class="co">#&gt; attr(,&quot;term.labels&quot;)</span>
+<span class="co">#&gt; [1] &quot;cyl&quot;</span>
+<span class="co">#&gt; attr(,&quot;order&quot;)</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; attr(,&quot;intercept&quot;)</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; attr(,&quot;response&quot;)</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; attr(,&quot;.Environment&quot;)</span>
+<span class="co">#&gt; &lt;environment: R_GlobalEnv&gt;</span>
+<span class="co">#&gt; attr(,&quot;predvars&quot;)</span>
+<span class="co">#&gt; list(mpg, cyl)</span>
+<span class="co">#&gt; attr(,&quot;dataClasses&quot;)</span>
+<span class="co">#&gt;       mpg       cyl </span>
+<span class="co">#&gt; &quot;numeric&quot; &quot;numeric&quot;</span>
+
+<span class="kw">head</span>(resids)
+<span class="co">#&gt;         Mazda RX4     Mazda RX4 Wag        Datsun 710    Hornet 4 Drive </span>
+<span class="co">#&gt;         0.3701643         0.3701643        -3.5814159         0.7701643 </span>
+<span class="co">#&gt; Hornet Sportabout           Valiant </span>
+<span class="co">#&gt;         3.8217446        -2.5298357</span></code></pre></div>
+<p>Here, <code>rest</code> will capture everything else.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(rest)
+<span class="co">#&gt; List of 8</span>
+<span class="co">#&gt;  $ coefficients : num [1:2, 1:4] 37.885 -2.876 2.074 0.322 18.268 ...</span>
+<span class="co">#&gt;   ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
+<span class="co">#&gt;   .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;cyl&quot;</span>
+<span class="co">#&gt;   .. ..$ : chr [1:4] &quot;Estimate&quot; &quot;Std. Error&quot; &quot;t value&quot; &quot;Pr(&gt;|t|)&quot;</span>
+<span class="co">#&gt;  $ aliased      : Named logi [1:2] FALSE FALSE</span>
+<span class="co">#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;cyl&quot;</span>
+<span class="co">#&gt;  $ sigma        : num 3.21</span>
+<span class="co">#&gt;  $ df           : int [1:3] 2 30 2</span>
+<span class="co">#&gt;  $ r.squared    : num 0.726</span>
+<span class="co">#&gt;  $ adj.r.squared: num 0.717</span>
+<span class="co">#&gt;  $ fstatistic   : Named num [1:3] 79.6 1 30</span>
+<span class="co">#&gt;   ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;value&quot; &quot;numdf&quot; &quot;dendf&quot;</span>
+<span class="co">#&gt;  $ cov.unscaled : num [1:2, 1:2] 0.4185 -0.0626 -0.0626 0.0101</span>
+<span class="co">#&gt;   ..- attr(*, &quot;dimnames&quot;)=List of 2</span>
+<span class="co">#&gt;   .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;cyl&quot;</span>
+<span class="co">#&gt;   .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;cyl&quot;</span></code></pre></div>
+<p>The assignment operator noticed that <code>...rest</code> is prefixed with <code>...</code>, and it created a variable called <code>rest</code> for the trailing values of the list. If you omitted the “everything else” prefix, there would be an error because the lengths of the left- and right-hand sides of the assignment would be mismatched.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{ fcall :<span class="st"> </span>fterms :<span class="st"> </span>resids :<span class="st"> </span>rest } %&lt;-%<span class="st"> </span><span class="kw">summary</span>(f)
+<span class="co">#&gt; Error: too many values to unpack</span></code></pre></div>
+<p>If multiple collector variables are specified at a particular depth it is ambiguous which values to assign to which collector and an error will be raised.</p>
+</div>
+<div id="leading-values-and-middle-values" class="section level2">
+<h2>Leading values and middle values</h2>
+<p>In addition to collecting trailing values, you can also collect initial values and assign specific remaining values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{ ...skip :<span class="st"> </span>e :<span class="st"> </span>f } %&lt;-%<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
+skip
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] 3</span>
+e
+<span class="co">#&gt; [1] 4</span>
+f
+<span class="co">#&gt; [1] 5</span></code></pre></div>
+<p>Or you can assign the first value, skip values, and then assign the last value.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{ begin :<span class="st"> </span>...middle :<span class="st"> </span>end } %&lt;-%<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)
+begin
+<span class="co">#&gt; [1] 1</span>
+middle
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] 4</span>
+end
+<span class="co">#&gt; [1] 5</span></code></pre></div>
+</div>
+<div id="skipped-values-anonymous-elements" class="section level2">
+<h2>Skipped values: anonymous elements</h2>
+<p>You can skip one or more values without raising an error by using a period (<code>.</code>) instead of a variable name. For example, you might care only about the min, mean, and max values of a vector’s <code>summary</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">min_wt :<span class="st"> </span>. :<span class="st"> </span>. :<span class="st"> </span>mean_wt :<span class="st"> </span>. :<span class="st"> </span>max_wt %&lt;-%<span class="st"> </span><span class="kw">summary</span>(mtcars$wt)
+min_wt
+<span class="co">#&gt; [1] 1.513</span>
+mean_wt
+<span class="co">#&gt; [1] 3.217</span>
+max_wt
+<span class="co">#&gt; [1] 5.424</span></code></pre></div>
+<p>By combining an anonymous element (<code>.</code>) with the collector prefix, (<code>...</code>), you can ignore whole sublists.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{begin:<span class="st"> </span>....:<span class="st"> </span>end} %&lt;-%<span class="st"> </span><span class="kw">list</span>(<span class="st">'hello'</span>, <span class="st">'blah'</span>, <span class="kw">list</span>(<span class="st">'blah'</span>), <span class="st">'blah'</span>, <span class="st">'world!'</span>)
+begin
+<span class="co">#&gt; [1] &quot;hello&quot;</span>
+end
+<span class="co">#&gt; [1] &quot;world!&quot;</span></code></pre></div>
+<p>You can mix periods and collectors together to selectively keep and discard elements.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">{ begin :<span class="st"> </span>. :<span class="st"> </span>...middle :<span class="st"> </span>end } %&lt;-%<span class="st"> </span><span class="kw">as.list</span>(<span class="dv">1</span>:<span class="dv">5</span>)
+begin
+<span class="co">#&gt; [1] 1</span>
+middle
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 4</span>
+end
+<span class="co">#&gt; [1] 5</span></code></pre></div>
+<div id="swapping-values" class="section level3">
+<h3>Swapping values</h3>
+<p>A handy trick is swapping values without the use of a temporary variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">first :<span class="st"> </span>last %&lt;-%<span class="st"> </span><span class="kw">c</span>(<span class="st">'Ai'</span>, <span class="st">'Genly'</span>)
+first
+<span class="co">#&gt; [1] &quot;Ai&quot;</span>
+last
+<span class="co">#&gt; [1] &quot;Genly&quot;</span>
+
+first :<span class="st"> </span>last %&lt;-%<span class="st"> </span><span class="kw">c</span>(last, first)
+first
+<span class="co">#&gt; [1] &quot;Genly&quot;</span>
+last
+<span class="co">#&gt; [1] &quot;Ai&quot;</span></code></pre></div>
+<p>or</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cat &lt;-<span class="st"> 'meow'</span>
+dog &lt;-<span class="st"> 'bark'</span>
+
+cat :<span class="st"> </span>dog :<span class="st"> </span>fish %&lt;-%<span class="st"> </span><span class="kw">c</span>(dog, cat, dog)
+cat
+<span class="co">#&gt; [1] &quot;bark&quot;</span>
+dog
+<span class="co">#&gt; [1] &quot;meow&quot;</span>
+fish
+<span class="co">#&gt; [1] &quot;bark&quot;</span></code></pre></div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
