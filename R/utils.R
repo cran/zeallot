@@ -16,12 +16,45 @@ cdr <- function(cons) {
   cons[-1]
 }
 
+default <- function(x) {
+  attr(x, "default", exact = TRUE)
+}
+
+has_default <- function(x) {
+  vapply(x, function(i) !is.null(attr(i, "default")), logical(1))
+}
+
+add_defaults <- function(names, values, env) {
+  where <- which(has_default(names))
+  defaults <- lapply(names[where], default)[where > length(values)]
+  evaled <- lapply(defaults, eval, envir = env)
+
+  append(values, evaled)
+}
+
+names2 <- function(x) {
+  if (is.null(names(x))) rep.int("", length(x)) else names(x)
+}
+
 tree <- function(x) {
-  if (length(x) == 1) {
+  if (length(x) == 1 && is.language(x) && !is.symbol(x)) {
     return(x)
   }
 
-  append(tree(x[[1]]), lapply(x[-1], tree))
+  x <- as.list(x)
+
+  if (length(x) == 1 && length(x[[1]]) <= 1) {
+    if (names2(x) != "") {
+      return(list(as.symbol("="), as.symbol(names(x)), x[[1]]))
+    }
+
+    return(x[[1]])
+  }
+
+  append(
+    tree(x[[1]]),
+    lapply(seq_along(x[-1]), function(i) tree(x[-1][i]))
+  )
 }
 
 calls <- function(x) {
@@ -29,17 +62,79 @@ calls <- function(x) {
     return(NULL)
   }
 
-  c(as.character(car(x)), unlist(lapply(cdr(x), calls)))
+  this <- car(x)
+
+  if (this != "c" && this != "=") {
+    stop_invalid_lhs(unexpected_call(this))
+  }
+
+  c(as.character(this), unlist(lapply(cdr(x), calls)))
 }
 
 variables <- function(x) {
   if (!is_list(x)) {
+    if (x == "") {
+      stop_invalid_lhs(empty_variable(x))
+    }
+
     if (!is.symbol(x)) {
-      stop("found ", class(x), call. = FALSE)
+      stop_invalid_lhs(unexpected_variable(x))
     }
 
     return(as.character(x))
   }
 
+  if (car(x) == "=") {
+    var <- as.character(car(cdr(x)))
+    default <- car(cdr(cdr(x)))
+
+    if (is.null(default)) {
+      default <- quote(pairlist())
+    }
+
+    attr(var, "default") <- default
+
+    return(var)
+  }
+
   lapply(cdr(x), variables)
+}
+
+#
+# error helpers below
+#
+
+incorrect_number_of_values <- function() {
+  "incorrect number of values"
+}
+
+empty_variable <- function(obj) {
+  paste("found empty variable, check for extraneous commas")
+}
+
+unexpected_variable <- function(obj) {
+  paste("expected symbol, but found", class(obj))
+}
+
+unexpected_call <- function(obj) {
+  paste0("unexpected call `", as.character(obj), "`")
+}
+
+# thank you Advanced R
+condition <- function(subclass, message, call = sys.call(-1), ...) {
+  structure(
+    class = c(subclass, "condition"),
+    list(message = message, call = call),
+    ...
+  )
+}
+
+stop_invalid_lhs <- function(message, call = sys.call(-1), ...) {
+  cond <- condition(c("invalid_lhs", "error"), message, call, ...)
+  stop(cond)
+}
+
+stop_invalid_rhs <- function(message, call = sys.call(-1), ...) {
+  cond <- condition(c("invalid_rhs", "error"), message, call, ...)
+  stop(cond)
 }

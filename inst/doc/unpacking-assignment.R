@@ -170,6 +170,21 @@ middle
 end
 
 ## ------------------------------------------------------------------------
+nums <- 1:2
+c(x, y) %<-% tail(nums, 2)
+x
+y
+
+## ---- error = TRUE-------------------------------------------------------
+c(x, y, z) %<-% tail(nums, 3)
+
+## ------------------------------------------------------------------------
+c(x, y, z = NULL) %<-% tail(nums, 3)
+x
+y
+z
+
+## ------------------------------------------------------------------------
 c(first, last) %<-% c("Ai", "Genly")
 first
 last
@@ -186,4 +201,17 @@ c(cat, dog, fish) %<-% c(dog, cat, dog)
 cat
 dog
 fish
+
+## ---- eval = require("magrittr")-----------------------------------------
+library(magrittr)
+
+mtcars %>%
+  subset(hp > 100) %>%
+  aggregate(. ~ cyl, data = ., FUN = . %>% mean() %>% round(2)) %>%
+  transform(kpl = mpg %>% multiply_by(0.4251)) %->% 
+  c(cyl, mpg, ...rest)
+
+cyl
+mpg
+rest
 

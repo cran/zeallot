@@ -1,8 +1,10 @@
-pair_off <- function(names, values) {
+pair_off <- function(names, values, env) {
   if (is.character(names)) {
     if (names == ".") {
       return()
     }
+
+    attributes(names) <- NULL
 
     return(list(list(name = names, value = values)))
   }
@@ -16,6 +18,13 @@ pair_off <- function(names, values) {
   # mismatch between variables and values
   #
   if (length(names) != length(values)) {
+    if (any(has_default(names))) {
+      values <- add_defaults(names, values, env)
+      names <- lapply(names, `attributes<-`, value = NULL)
+
+      return(pair_off(names, values))
+    }
+
     #
     # mismatch could be resolved by destructuring the values, in this case
     # values must be a single element list
@@ -30,26 +39,8 @@ pair_off <- function(names, values) {
     # mismatch is a problem
     #
     if (!has_collector(names) || length(names) > length(values)) {
-      stop(
-        "invalid `%<-%` right-hand side, incorrect number of values",
-        call. = FALSE
-      )
+      stop_invalid_rhs(incorrect_number_of_values())
     }
-
-    # if (!has_collector(names)) {
-    #   if (length(names) > length(values)) {
-    #     stop('expecting ', length(names), ' values, but found ', length(values),
-    #          call. = FALSE)
-    #   } else {
-    #     stop('too many values to unpack', call. = FALSE)
-    #   }
-    #
-    # } else {
-    #   if (length(names) > length(values)) {
-    #     stop('expecting at least ', length(names), ' values, but found ',
-    #          length(values), call. = FALSE)
-    #   }
-    # }
   }
 
   if (is_collector(car(names))) {
@@ -60,7 +51,6 @@ pair_off <- function(names, values) {
     # skip unnamed collector variable and corresponding values
     #
     if (name == "...") {
-      # stop('invalid collector variable', call. = FALSE)
       return(pair_off(cdr(names), cdr(collected)))
     }
 
@@ -74,10 +64,7 @@ pair_off <- function(names, values) {
   # a nested vector is not unpacked, mismatch
   #
   if (is_list(names) && !is_list(values)) {
-    stop(
-      "invalid `%<-%` right-hand side, incorrect number of values",
-      call. = FALSE
-    )
+    stop_invalid_rhs(incorrect_number_of_values())
   }
 
   if (length(names) == 1) {
@@ -86,4 +73,3 @@ pair_off <- function(names, values) {
 
   c(pair_off(car(names), car(values)), pair_off(cdr(names), cdr(values)))
 }
-

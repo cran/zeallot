@@ -83,13 +83,13 @@ rest
 You can install zeallot from CRAN.
 
 ```R
-install.packages('zeallot')
+install.packages("zeallot")
 ```
 
 Use devtools to install the latest, development version of zeallot from GitHub.
 
 ```R
-devtools::install_github('nteetor/zeallot')
+devtools::install_github("nteetor/zeallot")
 ```
 
 ## Getting Started
@@ -143,13 +143,13 @@ err
 #NULL
 ```
 
-On the left-hand side of the operator is a list of bare variable names using
-colons and braces. These variables do not need to be previously defined. On the
-right-hand side is a vector, list, or other R object to unpack. `%<-%` unpacks
-the right-hand side, checks the number of variable names against the number of
-unpacked values, and then assigns each unpacked value to a variable. The result,
-instead of dealing with a list of values there are two distinct variables, `res`
-and `err`.
+The name structure of the operator is a flat or nested set of bare variable
+names built with calls to `c()`. . These variables do not need to be previously
+defined. On the right-hand side is a vector, list, or other R object to unpack.
+`%<-%` unpacks the right-hand side, checks the number of variable names against
+the number of unpacked values, and then assigns each unpacked value to a
+variable. The result, instead of dealing with a list of values there are two
+distinct variables, `res` and `err`.
 
 ### Further Reading and Examples
 
@@ -170,7 +170,7 @@ The [vadr](https://github.com/crowding/vadr) package includes a
 with much of the same functionality as `%<-%`. As the author states, "[they]
 strongly prefer there to be a `<-` anywhere that there is a modification to the
 environment." If you feel similarly I suggest looking at vadr. Unfortunately the
-vadr package is not on CRAN and will need to be downloaded using
+vadr package is not on CRAN and will need to be installed using
 `devtools::install_github()`.
 
 ---

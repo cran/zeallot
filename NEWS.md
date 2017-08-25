@@ -1,3 +1,19 @@
+# zeallot 0.0.5
+
+## Major Changes
+
+* The bracket and colon syntax has been completely removed, users will now see 
+  an "unexpected call `{`" error message when attempting to use the old syntax.
+  Please use the `c()` syntax for the name structure.
+
+## Major Improvements
+
+* A `%->%` operator has been added. The right operator performs the same
+  operation as `%<-%` with the name structure on the right-hand side and
+  the values to assign on the left-hand side.
+* `=` may be used to specify the default value of a variable. A default value
+  is used when there are an insufficient number of values.
+
 # zeallot 0.0.4
 
 ## Major Changes
