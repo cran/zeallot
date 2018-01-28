@@ -1,3 +1,24 @@
+# zeallot 0.1.0
+
+## Major Improvements
+
+* Bumped to stable version.
+
+## Minor Improvements
+
+* Removed outdate language in the unpacking assignment vignette. (#36)
+
+## Bug Fixes
+
+* Destructuring objects with multiple classes will no longer raise a
+  warning. (#35)
+
+# zeallot 0.0.6.1
+
+## Bug Fixes
+
+* Resolved problem where collector variables would not be assigned the correct   default value. (#34)
+
 # zeallot 0.0.6
 
 ## Major Improvements
